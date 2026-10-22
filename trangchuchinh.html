@@ -1,0 +1,1813 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#b8e4f5">
+    <meta name="description" content="Góc Khuất Nhỏ - hành trình học tập và những dấu ấn của Ngô Ngọc Anh Khoa.">
+    <title>Ngô Ngọc Anh Khoa | Góc Khuất Nhỏ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: light;
+            --sky: #b8e4f5;
+            --blue: #438cac;
+            --deep: #173746;
+            --muted: #526b76;
+            --line: rgba(37, 86, 107, .18);
+            --yellow: #f0c96a;
+            --display: 'Manrope', 'Trebuchet MS', sans-serif;
+            --body: 'DM Sans', 'Segoe UI', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 24px;
+        }
+
+        body {
+            min-width: 320px;
+            margin: 0;
+            color: var(--deep);
+            background-color: #d9f0f8;
+            background-image:
+                radial-gradient(ellipse 210px 60px at 12% 18%, rgba(255, 255, 255, .86) 0 48%, transparent 50%),
+                radial-gradient(ellipse 260px 68px at 92% 38%, rgba(255, 255, 255, .72) 0 48%, transparent 50%),
+                radial-gradient(ellipse 190px 56px at 36% 76%, rgba(255, 255, 255, .58) 0 48%, transparent 50%),
+                linear-gradient(155deg, #fff 0%, #eaf8fd 31%, #c2e8f6 66%, #a9d8ec 100%);
+            background-attachment: fixed;
+            font-family: var(--body);
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        body::before,
+        body::after {
+            position: fixed;
+            z-index: -1;
+            pointer-events: none;
+            content: '';
+            filter: blur(1px);
+        }
+
+        body::before {
+            top: 20%;
+            left: -70px;
+            width: 290px;
+            height: 76px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .58);
+            box-shadow: 42px -24px 0 8px rgba(255, 255, 255, .54), 92px -4px 0 -2px rgba(255, 255, 255, .6), 50px 17px 0 8px rgba(255, 255, 255, .47);
+            animation: cloud-drift 28s ease-in-out infinite alternate;
+        }
+
+        body::after {
+            right: -95px;
+            bottom: 16%;
+            width: 250px;
+            height: 66px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .45);
+            box-shadow: -45px -22px 0 7px rgba(255, 255, 255, .43), -94px 2px 0 -4px rgba(255, 255, 255, .48), -47px 18px 0 8px rgba(255, 255, 255, .38);
+            animation: cloud-drift 34s ease-in-out infinite alternate-reverse;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin-top: 0;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--display);
+        }
+
+        .page-width {
+            width: min(1120px, calc(100% - 64px));
+            margin-inline: auto;
+        }
+
+        .page-view[hidden] {
+            display: none !important;
+        }
+
+        .site-header {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            min-height: 78px;
+            align-items: center;
+            justify-content: space-between;
+            width: min(1240px, calc(100% - 64px));
+            margin-inline: auto;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .wordmark {
+            font: 800 13px/1 var(--display);
+            letter-spacing: .08em;
+        }
+
+        .wordmark-dot {
+            color: var(--blue);
+        }
+
+        .main-menu {
+            display: flex;
+            gap: 34px;
+            align-items: center;
+        }
+
+        .menu-link {
+            position: relative;
+            padding-block: 26px;
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 600;
+            transition: color .2s ease;
+        }
+
+        .menu-link::after {
+            position: absolute;
+            right: 0;
+            bottom: 18px;
+            left: 0;
+            height: 2px;
+            background: var(--blue);
+            content: '';
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .2s ease;
+        }
+
+        .menu-link:hover,
+        .menu-link.is-active {
+            color: var(--deep);
+        }
+
+        .menu-link:hover::after,
+        .menu-link.is-active::after {
+            transform: scaleX(1);
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        .home-hero {
+            display: grid;
+            min-height: 610px;
+            grid-template-columns: 1fr .92fr;
+            gap: 38px;
+            align-items: center;
+            padding-block: 68px 84px;
+        }
+
+        .eyebrow {
+            margin: 0 0 20px;
+            color: var(--blue);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .16em;
+        }
+
+        .eyebrow-mark {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            margin-right: 9px;
+            border-radius: 50%;
+            background: var(--yellow);
+            vertical-align: 1px;
+        }
+
+        .hero-copy h1,
+        .page-hero h1 {
+            margin-bottom: 24px;
+            font-size: clamp(44px, 6vw, 76px);
+            font-weight: 600;
+            letter-spacing: 0;
+            line-height: 1.08;
+        }
+
+        .name-highlight {
+            color: var(--blue);
+        }
+
+        .hero-intro,
+        .page-hero-lead {
+            max-width: 455px;
+            margin-bottom: 30px;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 23px;
+        }
+
+        .button {
+            display: inline-flex;
+            min-height: 48px;
+            align-items: center;
+            justify-content: center;
+            gap: 22px;
+            padding: 0 20px;
+            border: 1px solid transparent;
+            font-size: 12px;
+            font-weight: 700;
+            transition: transform .2s ease, background .2s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            color: #fff;
+            background: var(--deep);
+        }
+
+        .button-primary:hover {
+            background: var(--blue);
+        }
+
+        .button-primary span {
+            font-size: 16px;
+        }
+
+        .text-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--deep);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .text-link span {
+            color: var(--blue);
+            font-size: 17px;
+            transition: transform .2s ease;
+        }
+
+        .text-link:hover span {
+            transform: translateX(4px);
+        }
+
+        .hero-facts {
+            display: flex;
+            gap: 27px;
+            margin-top: 56px;
+        }
+
+        .hero-facts div {
+            display: grid;
+            gap: 3px;
+        }
+
+        .hero-facts strong {
+            font: 700 14px var(--display);
+        }
+
+        .hero-facts span {
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .hero-art {
+            position: relative;
+            display: grid;
+            min-height: 430px;
+            place-items: center;
+            isolation: isolate;
+        }
+
+        .sun-orbit {
+            position: absolute;
+            top: 9%;
+            right: 4%;
+            width: 315px;
+            aspect-ratio: 1;
+            border: 1px solid rgba(67, 140, 172, .24);
+            border-radius: 50%;
+        }
+
+        .sun-orbit::before,
+        .sun-orbit::after {
+            position: absolute;
+            border: 1px solid rgba(67, 140, 172, .2);
+            border-radius: 50%;
+            content: '';
+        }
+
+        .sun-orbit::before {
+            inset: 25px;
+        }
+
+        .sun-orbit::after {
+            inset: 52px;
+        }
+
+        .cloud {
+            position: absolute;
+            z-index: -1;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .82);
+            filter: drop-shadow(0 7px 14px rgba(57, 125, 151, .08));
+        }
+
+        .cloud::before,
+        .cloud::after {
+            position: absolute;
+            bottom: 8px;
+            border-radius: 50%;
+            background: inherit;
+            content: '';
+        }
+
+        .cloud::before {
+            left: 19%;
+            width: 48%;
+            height: 45px;
+        }
+
+        .cloud::after {
+            right: 17%;
+            width: 36%;
+            height: 32px;
+        }
+
+        .cloud-large {
+            top: 19%;
+            right: 4%;
+            width: 205px;
+        }
+
+        .cloud-small {
+            bottom: 17%;
+            left: 3%;
+            width: 145px;
+            transform: scale(.76);
+        }
+
+        .portrait-placeholder {
+            position: relative;
+            display: flex;
+            width: min(285px, 74%);
+            aspect-ratio: .82;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 7px solid rgba(255, 255, 255, .9);
+            border-radius: 46% 46% 5px 5px;
+            background: linear-gradient(150deg, #fff 3%, #e1f5fc 44%, #9bd1e8 100%);
+            box-shadow: 0 20px 70px rgba(39, 105, 134, .16);
+            transform: rotate(2deg);
+        }
+
+        .portrait-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            object-fit: cover;
+            object-position: center 38%;
+        }
+
+        .orbit-label {
+            position: absolute;
+            color: var(--muted);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .17em;
+        }
+
+        .label-top {
+            top: 7%;
+            left: 6%;
+        }
+
+        .label-bottom {
+            right: 3%;
+            bottom: 4%;
+        }
+
+        .sparkle {
+            position: absolute;
+            color: var(--yellow);
+        }
+
+        .sparkle-one {
+            top: 17%;
+            left: 18%;
+            font-size: 24px;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        .sparkle-two {
+            right: 12%;
+            bottom: 24%;
+            font-size: 17px;
+            animation: twinkle 3s 1s ease-in-out infinite;
+        }
+
+        .intro-band,
+        .skills-section,
+        .achievement-section {
+            border-block: 1px solid var(--line);
+            background: rgba(255, 255, 255, .35);
+        }
+
+        .intro-band-inner {
+            position: relative;
+            display: grid;
+            grid-template-columns: .8fr 1.1fr .3fr;
+            gap: 35px;
+            align-items: start;
+            padding-block: 73px;
+        }
+
+        .intro-band h2,
+        .section-heading h2,
+        .about-copy h2,
+        .achievement-copy h2,
+        .contact-details h2 {
+            margin-bottom: 16px;
+            font-size: 32px;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .intro-band-inner>div:nth-child(2) p {
+            max-width: 510px;
+            margin-bottom: 19px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .quote-mark {
+            justify-self: end;
+            color: rgba(67, 140, 172, .25);
+            font: 100px/.8 Georgia, serif;
+        }
+
+        .learning-section {
+            padding-block: 76px 88px;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .section-heading .eyebrow {
+            margin-bottom: 9px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+        }
+
+        .skill-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-chip {
+            display: inline-flex;
+            min-height: 40px;
+            align-items: center;
+            gap: 11px;
+            padding: 0 14px;
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            background: rgba(255, 255, 255, .63);
+            color: var(--deep);
+            font-size: 12px;
+            font-weight: 600;
+            transition: transform .2s ease, background .2s ease;
+        }
+
+        .skill-chip:hover {
+            background: #fff;
+            transform: translateY(-3px);
+        }
+
+        .skill-chip span {
+            color: var(--blue);
+            font: 700 9px var(--display);
+        }
+
+        .site-footer {
+            border-top: 1px solid var(--line);
+            background: rgba(237, 249, 253, .7);
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 35px;
+            padding-block: 38px 32px;
+        }
+
+        .footer-wordmark {
+            font-size: 11px;
+        }
+
+        .footer-note {
+            margin: 10px 0 0;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .footer-school,
+        .footer-social {
+            display: grid;
+            align-content: start;
+            gap: 5px;
+            font-size: 11px;
+        }
+
+        .footer-school strong {
+            font-family: var(--display);
+        }
+
+        .footer-school span {
+            color: var(--muted);
+        }
+
+        .footer-social {
+            grid-template-columns: repeat(3, auto);
+            gap: 18px;
+        }
+
+        .footer-social a:hover,
+        .footer-bottom a:hover {
+            color: var(--blue);
+        }
+
+        .footer-bottom {
+            display: flex;
+            min-height: 48px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .footer-bottom a {
+            color: var(--deep);
+            font-weight: 700;
+        }
+
+        .page-hero {
+            position: relative;
+            padding-block: 90px 75px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .page-hero h1 {
+            max-width: 750px;
+            margin-bottom: 20px;
+        }
+
+        .page-hero-lead {
+            max-width: 550px;
+            margin: 0;
+        }
+
+        .page-index {
+            position: absolute;
+            right: 0;
+            bottom: 70px;
+            color: rgba(67, 140, 172, .3);
+            font: 800 35px/.92 var(--display);
+            text-align: right;
+        }
+
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 100px;
+            align-items: start;
+            padding-block: 78px 90px;
+        }
+
+        .about-copy h2 {
+            margin-bottom: 22px;
+            font-size: 40px;
+        }
+
+        .about-copy>p:not(.eyebrow) {
+            max-width: 610px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        .quote-card {
+            position: relative;
+            max-width: 580px;
+            margin-top: 33px;
+            padding: 23px 26px 22px 57px;
+            border-left: 2px solid var(--blue);
+            background: rgba(255, 255, 255, .48);
+        }
+
+        .quote-card>span {
+            position: absolute;
+            top: 8px;
+            left: 17px;
+            color: var(--blue);
+            font: 43px/1 Georgia, serif;
+        }
+
+        .quote-card blockquote {
+            margin: 0;
+            color: var(--deep);
+            font: 600 14px/1.8 var(--display);
+        }
+
+        .student-card {
+            padding: 19px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, .66);
+        }
+
+        .student-card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 14px;
+            color: var(--muted);
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: .12em;
+        }
+
+        .status-dot {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #36785f;
+        }
+
+        .status-dot::before,
+        .status-inline {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #65aa7d;
+        }
+
+        .portrait-compact {
+            width: 100%;
+            aspect-ratio: 1.25;
+            border-width: 4px;
+            border-radius: 3px;
+            transform: none;
+        }
+
+        .student-card h3 {
+            margin: 17px 0 2px;
+            font-size: 18px;
+        }
+
+        .student-major {
+            margin-bottom: 17px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .student-details {
+            display: grid;
+            gap: 9px;
+            margin: 0;
+            padding-top: 14px;
+            border-top: 1px solid var(--line);
+        }
+
+        .student-details div {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            font-size: 10px;
+        }
+
+        .student-details dt {
+            color: var(--muted);
+        }
+
+        .student-details dd {
+            margin: 0;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        .skills-inner {
+            padding-block: 61px 70px;
+        }
+
+        .section-aside {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .skill-cloud-about {
+            max-width: 810px;
+        }
+
+        .journey-section {
+            padding-block: 72px 83px;
+        }
+
+        .journey-list {
+            border-top: 1px solid var(--line);
+        }
+
+        .journey-item {
+            display: grid;
+            grid-template-columns: 65px 1fr auto;
+            gap: 18px;
+            align-items: start;
+            padding-block: 23px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .journey-number {
+            color: var(--blue);
+            font: 700 12px var(--display);
+        }
+
+        .journey-item h3 {
+            margin: 0 0 5px;
+            font-size: 15px;
+        }
+
+        .journey-item p {
+            max-width: 610px;
+            margin: 0;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .journey-tag {
+            padding: 4px 8px;
+            border: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: .1em;
+        }
+
+        .achievement-section {
+            background: rgba(255, 255, 255, .45);
+        }
+
+        .achievement-inner {
+            display: grid;
+            grid-template-columns: .9fr 1fr;
+            gap: 80px;
+            align-items: center;
+            padding-block: 74px;
+        }
+
+        .achievement-copy h2 {
+            margin-bottom: 18px;
+            font-size: 38px;
+        }
+
+        .achievement-copy>p:last-child {
+            max-width: 410px;
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .achievement-display {
+            width: min(100%, 490px);
+            justify-self: end;
+            text-align: center;
+        }
+
+        .certificate-image {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 1px solid rgba(67, 140, 172, .4);
+            border-radius: 4px;
+            box-shadow: 0 16px 38px rgba(43, 106, 132, .1);
+        }
+
+        .achievement-note {
+            margin: 13px 0 0;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .future-note {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            padding-block: 55px;
+        }
+
+        .future-note .eyebrow {
+            margin: 0;
+        }
+
+        .future-note>p:not(.eyebrow) {
+            max-width: 560px;
+            margin: 0;
+            font: 600 15px/1.7 var(--display);
+        }
+
+        .contact-hero {
+            padding-block: 77px 66px;
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 105px;
+            align-items: start;
+            padding-block: 64px 82px;
+        }
+
+        .contact-details h2 {
+            margin-bottom: 25px;
+            font-size: 38px;
+        }
+
+        .contact-table {
+            border-top: 1px solid var(--line);
+        }
+
+        .contact-row {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 15px;
+            padding-block: 12px;
+            border-bottom: 1px solid var(--line);
+            font-size: 12px;
+        }
+
+        .contact-row>span {
+            color: var(--muted);
+        }
+
+        .contact-row strong {
+            font-weight: 700;
+        }
+
+        .contact-row small {
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        .contact-row strong a:hover {
+            color: var(--blue);
+        }
+
+        .status-inline {
+            display: inline-block;
+            margin-right: 8px;
+            vertical-align: 1px;
+        }
+
+        .contact-socials {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 17px;
+        }
+
+        .contact-socials>a {
+            display: grid;
+            min-height: 58px;
+            grid-template-columns: 27px 1fr auto;
+            gap: 8px;
+            align-items: center;
+            padding: 8px 11px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, .5);
+        }
+
+        .contact-socials>a>span:first-child {
+            display: grid;
+            width: 25px;
+            aspect-ratio: 1;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--deep);
+            color: white;
+            font: 700 13px var(--display);
+        }
+
+        .contact-socials>a>span:nth-child(2) {
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .contact-socials small {
+            display: block;
+            color: var(--muted);
+            font-size: 8px;
+            font-weight: 400;
+        }
+
+        .contact-socials b {
+            color: var(--blue);
+            font-size: 12px;
+        }
+
+        .contact-aside {
+            padding-top: 1px;
+        }
+
+        .contact-photo {
+            position: relative;
+            display: flex;
+            min-height: 300px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 4px;
+            background: linear-gradient(160deg, rgba(255, 255, 255, .96), rgba(192, 229, 243, .82) 58%, rgba(123, 185, 210, .7));
+        }
+
+        .contact-portrait {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            object-fit: cover;
+            object-position: center 32%;
+        }
+
+        .location-block {
+            display: grid;
+            grid-template-columns: 30px 1fr;
+            gap: 12px;
+            padding-top: 22px;
+        }
+
+        .location-icon {
+            display: grid;
+            width: 27px;
+            aspect-ratio: 1;
+            place-items: center;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+            color: var(--blue);
+            font-size: 18px;
+        }
+
+        .location-block div {
+            display: grid;
+            gap: 2px;
+        }
+
+        .location-block div>span {
+            color: var(--blue);
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: .14em;
+        }
+
+        .location-block strong {
+            font: 700 13px var(--display);
+        }
+
+        .location-block p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .location-hometown {
+            margin-top: 17px;
+            padding-top: 17px;
+            border-top: 1px solid var(--line);
+        }
+
+        .contact-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding-block: 28px 60px;
+            border-top: 1px solid var(--line);
+        }
+
+        .contact-bottom p {
+            margin: 0;
+            font: 600 15px var(--display);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity .7s ease, transform .7s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .home-hero .reveal:nth-child(2) {
+            transition-delay: .12s;
+        }
+
+        @keyframes cloud-drift {
+            from {
+                transform: translateX(-12px);
+            }
+
+            to {
+                transform: translateX(24px);
+            }
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: .55;
+                transform: scale(.85) rotate(0);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.1) rotate(14deg);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        @media (max-width: 800px) {
+
+            .page-width,
+            .site-header {
+                width: min(100% - 40px, 600px);
+            }
+
+            .home-hero {
+                min-height: auto;
+                grid-template-columns: 1fr;
+                gap: 10px;
+                padding-block: 75px 56px;
+            }
+
+            .hero-copy h1,
+            .page-hero h1 {
+                font-size: clamp(45px, 10vw, 68px);
+            }
+
+            .hero-art {
+                min-height: 370px;
+            }
+
+            .sun-orbit {
+                right: 13%;
+                width: 270px;
+            }
+
+            .portrait-placeholder {
+                width: 235px;
+            }
+
+            .intro-band-inner {
+                grid-template-columns: 1fr 1.5fr;
+                gap: 20px;
+                padding-block: 53px;
+            }
+
+            .quote-mark {
+                display: none;
+            }
+
+            .about-layout {
+                grid-template-columns: 1fr 300px;
+                gap: 35px;
+            }
+
+            .achievement-inner {
+                gap: 35px;
+            }
+
+            .contact-layout {
+                grid-template-columns: 1fr 310px;
+                gap: 35px;
+            }
+
+            .contact-row {
+                grid-template-columns: 110px 1fr;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-social {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .page-width,
+            .site-header {
+                width: calc(100% - 36px);
+            }
+
+            .site-header {
+                min-height: 68px;
+            }
+
+            .wordmark {
+                font-size: 11px;
+            }
+
+            .menu-toggle {
+                display: flex;
+                width: 40px;
+                height: 40px;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+                border: 1px solid var(--line);
+                background: rgba(255, 255, 255, .55);
+                cursor: pointer;
+            }
+
+            .menu-toggle span {
+                width: 16px;
+                height: 1px;
+                background: var(--deep);
+                transition: transform .2s ease;
+            }
+
+            .menu-toggle[aria-expanded="true"] span:first-child {
+                transform: translateY(3px) rotate(45deg);
+            }
+
+            .menu-toggle[aria-expanded="true"] span:last-child {
+                transform: translateY(-3px) rotate(-45deg);
+            }
+
+            .main-menu {
+                position: absolute;
+                top: calc(100% + 1px);
+                right: -18px;
+                left: -18px;
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 8px 18px 14px;
+                border-bottom: 1px solid var(--line);
+                background: rgba(245, 251, 254, .97);
+            }
+
+            .main-menu.is-open {
+                display: flex;
+            }
+
+            .menu-link {
+                padding: 12px 4px;
+            }
+
+            .menu-link::after {
+                right: auto;
+                bottom: 7px;
+                width: 36px;
+            }
+
+            .home-hero {
+                padding-top: 58px;
+            }
+
+            .hero-copy h1,
+            .page-hero h1 {
+                font-size: clamp(43px, 13vw, 60px);
+            }
+
+            .hero-intro,
+            .page-hero-lead {
+                font-size: 14px;
+            }
+
+            .hero-actions {
+                gap: 16px;
+            }
+
+            .button {
+                min-height: 44px;
+                padding-inline: 14px;
+                font-size: 10px;
+            }
+
+            .hero-facts {
+                gap: 17px;
+                margin-top: 38px;
+            }
+
+            .hero-facts strong {
+                font-size: 12px;
+            }
+
+            .hero-facts span {
+                max-width: 90px;
+                font-size: 9px;
+            }
+
+            .hero-art {
+                min-height: 330px;
+            }
+
+            .sun-orbit {
+                right: 3%;
+                width: 238px;
+            }
+
+            .portrait-placeholder {
+                width: 205px;
+            }
+
+            .orbit-label {
+                font-size: 7px;
+            }
+
+            .label-top {
+                left: 0;
+            }
+
+            .intro-band-inner {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                padding-block: 43px;
+            }
+
+            .intro-band h2,
+            .section-heading h2 {
+                font-size: 27px;
+            }
+
+            .learning-section {
+                padding-block: 52px 60px;
+            }
+
+            .section-heading {
+                align-items: start;
+            }
+
+            .section-heading>.text-link {
+                margin-top: 18px;
+                white-space: nowrap;
+            }
+
+            .skill-chip {
+                min-height: 37px;
+                padding-inline: 10px;
+                font-size: 10px;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 22px;
+                padding-block: 29px 25px;
+            }
+
+            .footer-social {
+                grid-column: auto;
+                grid-template-columns: repeat(3, auto);
+                justify-content: start;
+                gap: 16px;
+            }
+
+            .footer-bottom {
+                min-height: 62px;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                gap: 4px 12px;
+                padding-block: 10px;
+                font-size: 9px;
+            }
+
+            .footer-bottom>span:nth-child(2) {
+                order: 1;
+                width: 100%;
+            }
+
+            .page-hero {
+                padding-block: 62px 49px;
+            }
+
+            .page-index {
+                right: 0;
+                bottom: 40px;
+                font-size: 25px;
+            }
+
+            .page-hero-lead {
+                max-width: calc(100% - 68px);
+            }
+
+            .about-layout {
+                grid-template-columns: 1fr;
+                gap: 38px;
+                padding-block: 54px 60px;
+            }
+
+            .about-copy h2,
+            .achievement-copy h2 {
+                font-size: 34px;
+            }
+
+            .student-card {
+                max-width: 390px;
+            }
+
+            .skills-inner,
+            .journey-section {
+                padding-block: 50px;
+            }
+
+            .section-aside {
+                max-width: 130px;
+                text-align: right;
+            }
+
+            .journey-item {
+                grid-template-columns: 30px 1fr;
+                gap: 10px;
+            }
+
+            .journey-tag {
+                grid-column: 2;
+                justify-self: start;
+            }
+
+            .achievement-inner {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding-block: 52px;
+            }
+
+            .achievement-display {
+                width: 100%;
+                justify-self: stretch;
+            }
+
+            .future-note {
+                flex-wrap: wrap;
+                padding-block: 36px;
+            }
+
+            .future-note .eyebrow {
+                width: 100%;
+            }
+
+            .future-note>p:not(.eyebrow) {
+                font-size: 13px;
+            }
+
+            .contact-layout {
+                grid-template-columns: 1fr;
+                gap: 36px;
+                padding-block: 48px 57px;
+            }
+
+            .contact-aside {
+                grid-row: 1;
+            }
+
+            .contact-photo {
+                min-height: 245px;
+            }
+
+            .contact-details h2 {
+                font-size: 33px;
+            }
+
+            .contact-row {
+                grid-template-columns: 115px 1fr;
+                font-size: 11px;
+            }
+
+            .contact-socials {
+                gap: 7px;
+            }
+
+            .contact-socials>a {
+                grid-template-columns: 24px 1fr auto;
+                padding-inline: 7px;
+            }
+
+            .contact-socials>a>span:first-child {
+                width: 22px;
+            }
+
+            .contact-bottom {
+                align-items: start;
+                flex-direction: column;
+                padding-block: 22px 44px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <a class="wordmark" href="#home" aria-label="Ngô Ngọc Anh Khoa - về đầu trang">NGÔ NGỌC ANH KHOA<span
+                class="wordmark-dot">.</span></a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu"
+            aria-label="Mở menu"><span></span><span></span></button>
+        <nav class="main-menu" id="main-menu" aria-label="Điều hướng chính">
+            <a class="menu-link is-active" href="#home" aria-current="page">Trang chủ</a>
+            <a class="menu-link" href="#about">Giới thiệu</a>
+            <a class="menu-link" href="#contact">Liên hệ</a>
+        </nav>
+    </header>
+    <main>
+        <div class="page-view" data-page-view="home">
+        <section class="home-hero page-width" id="home">
+            <div class="hero-copy reveal">
+                <p class="eyebrow"><span class="eyebrow-mark"></span> SINH VIÊN CÔNG NGHỆ THÔNG TIN</p>
+                <h1>Xin chào,<br>mình là <span class="name-highlight">Anh Khoa.</span></h1>
+                <p class="hero-intro">Một người trẻ yêu công nghệ, thích học điều mới và tin rằng mỗi dòng code đều có
+                    thể mở ra một chân trời khác.</p>
+                <div class="hero-actions">
+                    <a class="button button-primary" href="#about">Khám phá câu chuyện <span
+                            aria-hidden="true">↗</span></a>
+                    <a class="text-link" href="#contact">Kết nối với mình <span aria-hidden="true">→</span></a>
+                </div>
+                <div class="hero-facts" aria-label="Thông tin sinh viên">
+                    <div><strong>Năm 2</strong><span>Hành trình đại học</span></div>
+                    <div><strong>25CT114</strong><span>Lớp Công nghệ thông tin</span></div>
+                    <div><strong>LHU</strong><span>Đại học Lạc Hồng</span></div>
+                </div>
+            </div>
+            <div class="hero-art reveal" aria-label="Minh họa bầu trời và hành trình học tập">
+                <div class="sun-orbit"></div>
+                <div class="cloud cloud-large"></div>
+                <div class="cloud cloud-small"></div>
+                <div class="orbit-label label-top">LEARN / BUILD / GROW</div>
+                <div class="portrait-placeholder"><img class="portrait-image" src="banthan.jpg"
+                        alt="Chân dung Ngô Ngọc Anh Khoa"></div>
+                <span class="orbit-label label-bottom">ĐỒNG NAI · VIỆT NAM</span>
+                <span class="sparkle sparkle-one">✳</span><span class="sparkle sparkle-two">✳</span>
+            </div>
+        </section>
+        <section class="intro-band">
+            <div class="page-width intro-band-inner reveal">
+                <p class="eyebrow">GÓC KHUẤT NHỎ · 01</p>
+                <div>
+                    <h2>Mỗi bước nhỏ<br>đều đáng nhớ.</h2>
+                    <p>Đây là góc lưu lại những điều mình đã học, những thử thách đã vượt qua và những khoảnh khắc khiến
+                        hai năm đại học trở nên thật đặc biệt.</p><a class="text-link" href="#about">Đọc câu chuyện của
+                        mình <span aria-hidden="true">→</span></a>
+                </div>
+                <div class="quote-mark" aria-hidden="true">“</div>
+            </div>
+        </section>
+        <section class="learning-section page-width reveal">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">NHỮNG ĐIỀU ĐANG KHÁM PHÁ</p>
+                    <h2>Bản đồ học tập</h2>
+                </div><a class="text-link" href="#about">Xem thêm <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="skill-cloud" aria-label="Các lĩnh vực đã học">
+                <span class="skill-chip"><span>01</span> HTML</span><span class="skill-chip"><span>02</span>
+                    CSS</span><span class="skill-chip"><span>03</span> JavaScript</span><span
+                    class="skill-chip"><span>04</span> Python</span><span class="skill-chip"><span>05</span>
+                    SQL</span><span class="skill-chip"><span>06</span> IoT</span><span
+                    class="skill-chip"><span>07</span> Mạng máy tính</span>
+            </div>
+        </section>
+
+        </div>
+        <div class="page-view" data-page-view="about" hidden>
+        <section class="page-hero page-width reveal" id="about">
+            <p class="eyebrow"><span class="eyebrow-mark"></span> VỀ MÌNH · 02 / 03</p>
+            <h1>Một hành trình<br><span class="name-highlight">đang lớn lên.</span></h1>
+            <p class="page-hero-lead">Mình là Ngô Ngọc Anh Khoa, sinh viên năm hai ngành Công nghệ Thông tin. Đây là câu
+                chuyện về những điều mình đang học và những dấu mốc trên đường đi.</p>
+            <span class="page-index">ABOUT<br>ME</span>
+        </section>
+        <section class="about-layout page-width">
+            <div class="about-copy reveal">
+                <p class="eyebrow">01 — XIN CHÀO</p>
+                <h2>Luôn tò mò<br>về thế giới số.</h2>
+                <p>Mình yêu thích công nghệ, có tinh thần học hỏi và luôn muốn khám phá những kiến thức mới trong lĩnh
+                    vực lập trình và máy tính. Mỗi môn học, dự án hay thử thách đều là một cơ hội để mình tiến thêm một
+                    bước.</p>
+                <p>Hai năm học tập tại trường mang đến cho mình nhiều hơn kiến thức: đó còn là những lần thử sức, những
+                    khó khăn đã vượt qua và những bài học giúp mình trưởng thành hơn.</p>
+                <div class="quote-card"><span aria-hidden="true">“</span>
+                    <blockquote>Hành trình của tôi vẫn đang tiếp diễn, và mỗi dòng code hôm nay là một bước tiến đến
+                        phiên bản tốt hơn của chính mình ngày mai.</blockquote>
+                </div>
+            </div>
+            <aside class="student-card reveal">
+                <div class="student-card-top"><span>HỒ SƠ SINH VIÊN</span><span class="status-dot">ĐANG HỌC</span></div>
+                <div class="portrait-placeholder portrait-compact"><img class="portrait-image" src="banthan.jpg"
+                        alt="Chân dung Ngô Ngọc Anh Khoa"></div>
+                <h3>Ngô Ngọc Anh Khoa</h3>
+                <p class="student-major">Công nghệ Thông tin</p>
+                <dl class="student-details">
+                    <div>
+                        <dt>Trường</dt>
+                        <dd>Đại học Lạc Hồng</dd>
+                    </div>
+                    <div>
+                        <dt>Lớp</dt>
+                        <dd>25CT114</dd>
+                    </div>
+                    <div>
+                        <dt>Mã sinh viên</dt>
+                        <dd>125002142</dd>
+                    </div>
+                    <div>
+                        <dt>Năm học</dt>
+                        <dd>Năm thứ hai</dd>
+                    </div>
+                </dl>
+            </aside>
+        </section>
+        <section class="skills-section">
+            <div class="page-width skills-inner reveal">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">02 — NỀN TẢNG ĐÃ TÍCH LŨY</p>
+                        <h2>Những điều mình đã học</h2>
+                    </div><span class="section-aside">Mỗi kỹ năng là một cánh cửa mới.</span>
+                </div>
+                <div class="skill-cloud skill-cloud-about"><span class="skill-chip"><span>01</span> HTML</span><span
+                        class="skill-chip"><span>02</span> CSS</span><span class="skill-chip"><span>03</span>
+                        JavaScript</span><span class="skill-chip"><span>04</span> Python (PY)</span><span
+                        class="skill-chip"><span>05</span> SQL</span><span class="skill-chip"><span>06</span> Internet
+                        of Things (IoT)</span><span class="skill-chip"><span>07</span> Mạng máy tính</span></div>
+            </div>
+        </section>
+        <section class="journey-section page-width reveal">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">03 — TRÊN ĐƯỜNG ĐI</p>
+                    <h2>Từng bước một</h2>
+                </div>
+            </div>
+            <div class="journey-list">
+                <article class="journey-item"><span class="journey-number">01</span>
+                    <div>
+                        <h3>Nhập môn công nghệ</h3>
+                        <p>Bắt đầu xây dựng nền tảng về lập trình, máy tính và tư duy giải quyết vấn đề.</p>
+                    </div><span class="journey-tag">NỀN TẢNG</span>
+                </article>
+                <article class="journey-item"><span class="journey-number">02</span>
+                    <div>
+                        <h3>Học bằng cách thực hành</h3>
+                        <p>Thử sức với HTML, CSS, JavaScript, Python, SQL, IoT và mạng máy tính qua từng môn học, dự án.
+                        </p>
+                    </div><span class="journey-tag">THỰC HÀNH</span>
+                </article>
+                <article class="journey-item"><span class="journey-number">03</span>
+                    <div>
+                        <h3>Bồi đắp kiến thức Python</h3>
+                        <p>Tìm hiểu và đạt các chứng chỉ Python của ASU, củng cố kiến thức lập trình và kỹ năng chuyên
+                            môn.</p>
+                    </div><span class="journey-tag">ASU · PYTHON</span>
+                </article>
+            </div>
+        </section>
+        <section class="achievement-section">
+            <div class="page-width achievement-inner reveal">
+                <div class="achievement-copy">
+                    <p class="eyebrow">04 — NHỮNG DẤU MỐC</p>
+                    <h2>Thành tựu<br>đáng trân trọng.</h2>
+                    <p>Các chứng chỉ Python của ASU là một dấu mốc giúp mình vững tin hơn trên con đường đã chọn. Mỗi
+                        thành tựu, dù lớn hay nhỏ, đều nhắc mình tiếp tục cố gắng.</p>
+                </div>
+                <div class="achievement-display"><img class="certificate-image" src="ASU.png"
+                        alt="Chứng chỉ hoàn thành khóa Advanced Python Packages for Business Analytics">
+                    <p class="achievement-note">Chứng chỉ Python · Đại học Lạc Hồng và Arizona State University</p>
+                </div>
+            </div>
+        </section>
+        <section class="future-note page-width reveal">
+            <p class="eyebrow">TIẾP THEO LÀ GÌ?</p>
+            <p>Mình mong muốn trở thành một lập trình viên có năng lực, tạo nên những sản phẩm công nghệ hữu ích và từng
+                bước chinh phục những mục tiêu lớn hơn.</p><a class="text-link" href="#contact">Gửi lời chào <span
+                    aria-hidden="true">→</span></a>
+        </section>
+
+        </div>
+        <div class="page-view" data-page-view="contact" hidden>
+        <section class="page-hero contact-hero page-width reveal" id="contact">
+            <p class="eyebrow"><span class="eyebrow-mark"></span> KẾT NỐI · 03 / 03</p>
+            <h1>Một lời chào,<br><span class="name-highlight">một kết nối mới.</span></h1>
+            <p class="page-hero-lead">Bạn có thể tìm thấy mình qua những thông tin bên dưới. Mình luôn vui khi được kết
+                nối và chia sẻ về công nghệ.</p>
+            <span class="page-index">SAY<br>HELLO</span>
+        </section>
+        <section class="contact-layout page-width">
+            <div class="contact-details reveal">
+                <p class="eyebrow">THÔNG TIN CỦA MÌNH</p>
+                <h2>Ngô Ngọc<br>Anh Khoa</h2>
+                <div class="contact-table">
+                    <div class="contact-row"><span>Trường</span><strong>Đại học Lạc Hồng<br><small>Lac Hong
+                                University</small></strong></div>
+                    <div class="contact-row"><span>Lớp</span><strong>25CT114</strong></div>
+                    <div class="contact-row"><span>Mã sinh viên</span><strong>125002142</strong></div>
+                    <div class="contact-row"><span>Tình trạng</span><strong><span class="status-inline"></span>Đang
+                            học</strong></div>
+                    <div class="contact-row"><span>Mối quan hệ</span><strong>Đã có</strong></div>
+                    <div class="contact-row"><span>SĐT / Zalo</span><strong><a href="tel:0342024494">0342 024 494
+                                ↗</a></strong></div>
+                </div>
+                <div class="contact-socials"><a href="https://www.facebook.com/thdnnak2827" target="_blank"
+                        rel="noreferrer"><span>f</span><span>Facebook <small>Thêm liên kết cá
+                                nhân</small></span><b>↗</b></a><a href="https://www.tiktok.com/@duyencute2728" target="_blank"
+                        rel="noreferrer"><span>♪</span><span>TikTok <small>Thêm liên kết cá
+                                nhân</small></span><b>↗</b></a></div>
+            </div>
+            <aside class="contact-aside reveal">
+                <div class="contact-photo"><img class="contact-portrait" src="banthan.jpg"
+                        alt="Chân dung Ngô Ngọc Anh Khoa"></div>
+                <div class="location-block"><span class="location-icon" aria-hidden="true">⌖</span>
+                    <div><span>TRƯỜNG ĐẠI HỌC</span><strong>Đại học Lạc Hồng</strong>
+                        <p>10 Huỳnh Văn Nghệ, Trấn Biên,<br>Đồng Nai, Việt Nam</p>
+                    </div>
+                </div>
+                <div class="location-block location-hometown"><span class="location-icon" aria-hidden="true">⌖</span>
+                    <div><span>QUÊ QUÁN</span><strong>Đông Hòa, Đắk Lắk</strong>
+                        <p>Khu phố Thạch Chẩm, Phường Đông Hòa,<br>Tỉnh Đắk Lắk (Phú Yên cũ), Việt Nam</p>
+                    </div>
+                </div>
+            </aside>
+        </section>
+        <section class="contact-bottom page-width reveal">
+            <p>Đường chân trời luôn rộng hơn những gì ta đã biết.</p><a class="button button-primary" href="#about">Trở
+                lại câu chuyện <span aria-hidden="true">↗</span></a>
+        </section>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="page-width footer-main">
+            <div><a class="wordmark footer-wordmark" href="#home">NGÔ NGỌC ANH KHOA<span
+                        class="wordmark-dot">.</span></a>
+                <p class="footer-note">Một góc nhỏ ghi lại hành trình lớn.</p>
+            </div>
+            <div class="footer-school"><strong>Đại học Lạc Hồng</strong><span>10 Huỳnh Văn Nghệ, Trấn Biên, Đồng
+                    Nai</span></div>
+            <div class="footer-social"><a href="tel:0342024494">0342 024 494</a><a href="https://www.facebook.com/thdnnak2827"
+                    target="_blank" rel="noreferrer">Facebook ↗</a><a href="https://www.tiktok.com/@duyencute2728" target="_blank"
+                    rel="noreferrer">TikTok ↗</a></div>
+        </div>
+        <div class="page-width footer-bottom"><span>© <span data-year></span> Ngô Ngọc Anh Khoa</span><span>Độc quyền
+                thiết kế &amp; nội dung · 25CT114</span><a href="#contact">Kết nối <span aria-hidden="true">↗</span></a>
+        </div>
+    </footer>
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mainMenu = document.querySelector('.main-menu');
+
+        if (menuToggle && mainMenu) {
+            menuToggle.addEventListener('click', () => {
+                const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+                menuToggle.setAttribute('aria-expanded', String(!isOpen));
+                menuToggle.setAttribute('aria-label', isOpen ? 'Mở menu' : 'Đóng menu');
+                mainMenu.classList.toggle('is-open', !isOpen);
+            });
+
+            mainMenu.addEventListener('click', (event) => {
+                if (event.target.closest('a')) {
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    menuToggle.setAttribute('aria-label', 'Mở menu');
+                    mainMenu.classList.remove('is-open');
+                }
+            });
+        }
+
+        document.querySelectorAll('[data-year]').forEach((element) => {
+            element.textContent = new Date().getFullYear();
+        });
+
+        const revealItems = document.querySelectorAll('.reveal');
+        if ('IntersectionObserver' in window) {
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+            revealItems.forEach((item) => revealObserver.observe(item));
+        } else {
+            revealItems.forEach((item) => item.classList.add('is-visible'));
+        }
+
+        const pageViews = document.querySelectorAll('[data-page-view]');
+        const pageLinks = document.querySelectorAll('a[href="#home"], a[href="#about"], a[href="#contact"]');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        function showPage(pageId, updateHistory = true) {
+            const targetView = document.querySelector(`[data-page-view="${pageId}"]`);
+            if (!targetView) return;
+
+            pageViews.forEach((view) => {
+                view.hidden = view !== targetView;
+            });
+            menuLinks.forEach((link) => {
+                const isCurrent = link.getAttribute('href') === `#${pageId}`;
+                link.classList.toggle('is-active', isCurrent);
+                if (isCurrent) link.setAttribute('aria-current', 'page');
+                else link.removeAttribute('aria-current');
+            });
+
+            if (updateHistory && window.location.hash !== `#${pageId}`) {
+                window.history.pushState(null, '', `#${pageId}`);
+            }
+            window.scrollTo(0, 0);
+        }
+
+        pageLinks.forEach((link) => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                showPage(link.getAttribute('href').slice(1));
+                if (menuToggle && mainMenu) {
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    menuToggle.setAttribute('aria-label', 'Mở menu');
+                    mainMenu.classList.remove('is-open');
+                }
+            });
+        });
+
+        window.addEventListener('popstate', () => {
+            showPage(window.location.hash.slice(1) || 'home', false);
+        });
+        showPage(window.location.hash.slice(1) || 'home', false);
+    </script>
+</body>
+
+</html>

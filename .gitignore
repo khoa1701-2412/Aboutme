@@ -1,9 +1,0 @@
-**/.env
-**/.env.*
-!**/.env.example
-**/*.pem
-**/*.key
-**/id_rsa
-.DS_Store
-Thumbs.db
-Desktop.ini
