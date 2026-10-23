@@ -215,6 +215,21 @@
             color: var(--blue);
         }
 
+        .rotating-title {
+            display: inline;
+        }
+
+        .rotating-title::after {
+            display: inline-block;
+            width: 2px;
+            height: .82em;
+            margin-left: 5px;
+            background: var(--blue);
+            content: '';
+            vertical-align: -.03em;
+            animation: caret-blink .8s steps(2, start) infinite;
+        }
+
         .hero-intro,
         .page-hero-lead {
             max-width: 455px;
@@ -1084,6 +1099,12 @@
             }
         }
 
+        @keyframes caret-blink {
+            to {
+                visibility: hidden;
+            }
+        }
+
         @media (prefers-reduced-motion: reduce) {
 
             *,
@@ -1492,7 +1513,7 @@
         <section class="home-hero page-width" id="home">
             <div class="hero-copy reveal">
                 <p class="eyebrow"><span class="eyebrow-mark"></span> SINH VIÊN CÔNG NGHỆ THÔNG TIN</p>
-                <h1>Xin chào,<br>mình là <span class="name-highlight">Anh Khoa.</span></h1>
+                <h1><span class="name-highlight rotating-title" id="rotating-title" aria-live="polite">Xin chào mình là Anh Khoa</span></h1>
                 <p class="hero-intro">Một người trẻ yêu công nghệ, thích học điều mới và tin rằng mỗi dòng code đều có
                     thể mở ra một chân trời khác.</p>
                 <div class="hero-actions">
@@ -1751,6 +1772,41 @@
         document.querySelectorAll('[data-year]').forEach((element) => {
             element.textContent = new Date().getFullYear();
         });
+
+        const rotatingTitle = document.querySelector('#rotating-title');
+        const titleMessages = [
+            { text: 'Xin chào mình là Anh Khoa', duration: 5000 },
+            { text: 'Sinh Viên Năm 2', duration: 3000 },
+            { text: 'Ngành Công Nghệ Thông Tin', duration: 3000 },
+            { text: 'LAC HONG UNIVERSITY', duration: 4000 }
+        ];
+
+        if (rotatingTitle && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            let messageIndex = 0;
+            let characterIndex = titleMessages[0].text.length;
+            let deleting = false;
+
+            const animateTitle = () => {
+                const message = titleMessages[messageIndex];
+
+                if (!deleting && characterIndex === message.text.length) {
+                    deleting = true;
+                    window.setTimeout(animateTitle, message.duration);
+                    return;
+                }
+
+                if (deleting && characterIndex === 0) {
+                    messageIndex = (messageIndex + 1) % titleMessages.length;
+                    deleting = false;
+                }
+
+                characterIndex += deleting ? -1 : 1;
+                rotatingTitle.textContent = titleMessages[messageIndex].text.slice(0, characterIndex);
+                window.setTimeout(animateTitle, deleting ? 45 : 80);
+            };
+
+            window.setTimeout(animateTitle, titleMessages[0].duration);
+        }
 
         const revealItems = document.querySelectorAll('.reveal');
         if ('IntersectionObserver' in window) {
